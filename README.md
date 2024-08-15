@@ -4,8 +4,12 @@ Instructions:
 
 ```
 cd travellist-demo
+cp .env.example .env
 docker-compose build app
 docker-compose up -d
+docker-compose exec app rm -rf vendor composer.lock
+docker-compose exec app composer install
+docker-compose exec app php artisan key:generate
 ```
 
 Access site: http://server_domain_or_IP:8000. For example, http://192.168.85.128:8000/
